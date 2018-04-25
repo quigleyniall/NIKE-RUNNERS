@@ -1,0 +1,32 @@
+<% include ./partials/header %>
+
+<div class="container">
+    <div class="row">
+  <%if(wishlist.length > 0){ %>
+  <% wishlist.forEach(function(element){ %>
+    <div class="wishlist-thumbnail">
+    <div class="col-md-6 col-sm-6">
+      <img src="<%= element.image_url %>" style="height: 300px; width: 300px;">
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <form action="/products/<%=element.type%>/product-info/<%=element.name_id%>/<%=element.color%>/wishlist/delete" method="post">
+    <p>Name: <%= element.name %></p>
+    <p>Price: €<%=element.price %></p>
+    <p>Color: <%= element.color %></p>
+    <p>Size: <%= element.size %></p>
+    <button type="submit">Remove</button>
+  </form>
+  </div>
+</div>
+    <% }) %>
+
+</div>
+<div class="col-md-offset-6 col-sm-offset-6 xs-spacing">  
+  <p><strong>Total Price: €<%=price[0].total%></strong></p>
+</div>
+<% }  else { %>
+  <p> You have no runner saved to your wishlist right now</p>
+<% } %>
+</div>
+
+<% include ./partials/footer %>

@@ -1,0 +1,83 @@
+body {
+    background-color: black;
+}
+
+#landing-header {
+    z-index: 1;
+    position: relative;
+    top: 80%;
+    text-align: center;
+    padding-top: 60vh;
+}
+
+#landing-header h1 {
+    color: white;
+}
+
+.slideshow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideshow li {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 25s linear infinite;
+}
+.slideshow li:nth-child(1) {
+  background-image: url(https://wallpapercave.com/wp/kqUG8ye.jpg)
+}
+.slideshow li:nth-child(2) {
+  background-image: url(https://sportlockerdotcom.files.wordpress.com/2012/02/nike-plus-lebron_original.jpg);
+  background-position: 50% 0%;
+  animation-delay: 5s;
+}
+.slideshow li:nth-child(3) {
+  background-image: url(https://fortunedotcom.files.wordpress.com/2016/08/nike_app_athletes.jpg);
+  background-position: 50% 0%;
+  animation-delay: 10s;
+}
+.slideshow li:nth-child(4) {
+  background-image: url(http://3.bp.blogspot.com/-5L_Wm424iTc/UrqvN44m9uI/AAAAAAAAC3U/NfMjWGMn0Zs/s1600/logo-giay-the-thao-nike.jpg);
+  background-position: 50% 80%;
+  animation-delay: 15s;
+
+}
+.slideshow li:nth-child(5) {
+  background-image: url(https://frenchfuel.fr/wp-content/uploads/2015/07/NIKE_FIND_YOUR_FAST_native_1600.jpg);
+  animation-delay: 20s;
+}
+@keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}

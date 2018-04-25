@@ -1,0 +1,82 @@
+<% include ./partials/header %>
+<div class"container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row product-info-image-gallery">
+        <% for(var i=0; i<data.length; i++){ %>
+        <div class="col-md-6">
+        <img class="product-info-image-gallery-spacing"src="<%= data[i].image_url %>" style="height: 100%; width: 100%;">
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h4>Men's <%=data[0].type%> Shoe</h4>
+      <p>$<%= data[0].price %></p>
+      <h2><%= data[0].name %></h2>
+      <div class="row">
+        <% for(var i=0; i<moredata.length; i++){ %>
+        <div class="col-md-1 space">
+          <a href="<%= moredata[i].color%>"><img src="<%= moredata[i].image_url %>"
+          style="height: 50px; width: 50px;"></a>
+        </div>
+        <% } %>
+      </div>
+      <form action="/products/<%=data[0].type%>/product-info/<%=data[0].id%>/<%=data[0].color%>/wishlist" method="post">
+      <h4> Choose Size </h4>
+      <input id="6.5"type="radio" name="size"value="6.5"><label for="6.5">UK 6.5</label>
+      <input id="7" type="radio" name="size"value="7"><label for="7">UK 7</label>
+      <input id="7.5"type="radio" name="size"value="7.5"><label for="7.5">UK 7.5</label>
+
+      <input id="8"type="radio" name="size"value="8" ><label for="8">UK 8</label>
+      <input id="8.5"type="radio" name="size"value="8.5"><label for="8.5">UK 8.5</label>
+      <input id="9"type="radio" name="size"value="9"><label for="9">UK 9</label>
+
+      <input id="9.5"type="radio" name="size"value="9.5" ><label for="9.5">UK 9.5</label>
+      <input id="10"type="radio" name="size"value="10"required><label for="10">UK 10</label>
+      <input id="10.5"type="radio" name="size"value="10.5"><label for="10.5">UK 10.5</label>
+
+      <input id="11"type="radio" name="size"value="11" ><label for="11">UK 11</label>
+      <input id="11.5"type="radio" name="size"value="11.5"><label for="11.5">UK 11.5</label>
+      <input id="12"type="radio" name="size"value="12"><label for="12">UK 12</label>
+
+      <input id="12.5"type="radio" name="size" value="12.5"><label for="12.5">UK 12.5</label>
+      <input id="13"type="radio" name="size"value="13"><label for="13">UK 13</label>
+      <input id="13.5"type="radio" name="size"value="13.5"><label for="13.5">UK 13.5</label>
+      <div class="basket">
+        <button type="submit" name="addtocart"class="add-to-cart" value="add-to-cart">Add To Cart <i class="fas fa-cart-plus"></i></button>
+        <button class="wishlist"><i class="far fa-heart"></i></button>
+      </div>
+      </form>
+      <div class="description">
+        <%= data[0].description %>
+      </div>
+      <div class="delivery-reviews">
+        <div class="delivery-and-returns">
+          <button id="delivery-and-returns-btn"class="delivery-and-returns-btn">Delivery & Returns <span class="plus"><i class="fas fa-plus"></i></span><span class="minus"><i class="fas fa-minus"></i></span></button>
+          <span class="delivery-info">
+          <p>Free standard delivery with your NikePlus account.
+            <li>Standard deliveries arrive in 2–3 days; we deliver 6 days a week.</li>
+            <li>You can return your order for any reason, free of charge, within 30 days.</li>
+          </p>
+          </span>
+        </div>
+        <div class="reviews">
+          <button id="reviews-btn"class="reviews-btn">Reviews <span class="plus"><i class="fas fa-plus"></i></span><span class="minus"><i class="fas fa-minus"></i></span></button>
+          <span class="review-info">
+          <% reviewdata.forEach(function(element){ %>
+          <div class="reviewers">
+            <hr>
+            <p><%= element.username %> - <%= element.created %></p>
+            <p><strong><%= element.summary %></strong></p>
+            <p><%= element.review %></p>
+          </div>
+          <%})%>
+          <a href="/products/<%=data[0].type%>/product-info/<%=data[0].id%>/<%=data[0].color%>/review/new"><span>Write a review</span></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ./partials/footer %>

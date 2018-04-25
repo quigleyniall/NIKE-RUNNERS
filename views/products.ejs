@@ -1,0 +1,84 @@
+<% include ./partials/header %>
+<div class="container">
+  <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+    <div class="col-md-3 col-sm-12 col-xs-12">
+    <h3>Search</h3>
+    <hr>
+    <form id="searchform"action="/products" method="post">
+      <div class="form-group">
+        <input name ="nameofrunner" class="form-control"type="text"placeholder="Name of Runner">
+      </div>
+      <div class="form-group">
+        <input name ="min" class="form-control" type="number" placeholder="Min Price">
+      </div>
+      <div class="form-group">
+        <input name = "max" class="form-control" type="number" placeholder="Max Price">
+      </div>
+      <div class="form-group">
+        <select name="type"class="form-control">
+          <option value="All">All</option>
+          <option value="Running">Running</option>
+          <option value="Football">Football</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Basketball">Basketball</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <a href="/products/color/blue"><i class="fas fa-circle fa-2x" style="color:blue;"></i></a>
+        <a href="/products/color/white"><i class="fas fa-circle fa-2x" style="color:rgb(238,238,238);"></i></a>
+        <a href="/products/color/red"><i class="fas fa-circle fa-2x" style="color:Red;"></i></a>
+        <a href="/products/color/black"><i class="fas fa-circle fa-2x" style="color:black;"></i></a>
+        <a href="/products/color/green"><i class="fas fa-circle fa-2x" style="color:green;"></i></a>
+        <a href="/products/color/gray"><i class="fas fa-circle fa-2x" style="color:gray;"></i></a>
+        <a href="/products/color/orange"><i class="fas fa-circle fa-2x" style="color:orange;"></i></a>
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary"type="submit" value="Search">
+      </div>
+    </form>
+  </div>
+  <div class="col-md-9 col-sm-12 col-xs-12">
+    <div class="container-fluid">
+      <div class="row" style="display:flex; flex-wrap:wrap;">
+        <% for(var i=0; i<data.length; i++){ %>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="thumbnail product">
+            <a href='/products/<%=data[i].type %>/product-info/<%=data[i].name_id%>/<%=data[i].color%>'>
+            <img id="big-product-image"class="big-product-image<%=i%>"src="<%= data[i].image_url%>"></a>
+              <div class="caption">
+                <div class="row">
+                  <% hoverdata.forEach(function(hover){ %>
+                  <% if(data[i].name_id === hover.name_id){ %>
+                    <div class="col-md-4 col-xs-4">
+                      <span class="small-image-product"><a href="/products/<%=data[i].type %>/product-info/<%=data[i].name_id%>/<%= hover.color%>">
+                      <img class="small-image<%=i%>" id="image-size"  onmouseover="changeImage(<%=i%>)"  src="<%= hover.image_url %>"></a></span>
+                    </div>
+                  <% } %>
+                  <% }) %>
+                </div>
+                  <div class="info">
+                    <% numofcolor.forEach(function(numcolor){ %>
+                      <% if(data[i].name_id === numcolor.name_id){ %>
+                        <% if(numcolor.num==1){ %>
+                          <span class="numcolor"><%=numcolor.num%> Colour</span>
+                        <% } else { %>
+                          <span class="numcolor"><%=numcolor.num%> Colours</span>
+                        <%} %>
+                      <% } %>
+                    <% }) %>
+                    <hr>
+                    <p><h6><strong><%= data[i].name %></strong></h6></p>
+                    <p>Men's <%= data[i].type %> Shoe</p>
+                    <p>€<%= data[i].price %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ./partials/footer %>
